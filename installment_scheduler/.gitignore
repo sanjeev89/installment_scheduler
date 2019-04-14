@@ -9,3 +9,6 @@ sanjeev.cpp
 prog.exe
 sanjeev.exe
 main.exe
+/new folder
+*.exe
+*.gch

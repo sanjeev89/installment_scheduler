@@ -12,11 +12,13 @@ class data_3 {
 		float installment,closing_balance;
 }row_3[1000];
 
+
+
 bool wrong_input_three(float PMT, float PV, float r, float n)
 {
-    if(PMT <=0.0)
+    if(PMT <= 0.0)
     {
-        cout<<"PMT Wrong Value!!!"<<endl<<endl;
+        cout<<"PMT Wrong Value !!!"<<endl<<endl;
         return false;
     }
     else if(PV <= 0.0)
