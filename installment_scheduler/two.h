@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 class data_2 {
 	public:
 		int s_no;
