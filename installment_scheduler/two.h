@@ -76,7 +76,7 @@ void solve_2()
 
     if(wrong_input_2(fixed_principal, margin_int_rate, opening_balance)==false)
     {
-        cout<<"Wrong Input set....please check your values!!!";
+        cout<<"Wrong Input set....please check your values!!!"<<endl<<endl;
         return ;
     }
 	
@@ -96,7 +96,7 @@ void solve_2()
       row_2[i].bench_int = normalRandom();
       row_2[i].interest_rate = row_2[i].marg_int + row_2[i].bench_int;
       float x= row_2[i].interest_rate/12.0;
-      cout<<x<<endl;
+      //cout<<x<<endl;
       row_2[i].s_no = i;
       row_2[i].open_balance = fixed_principal*(months);
       row_2[i].principal = fixed_principal;

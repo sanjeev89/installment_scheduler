@@ -12,6 +12,36 @@ class data_3 {
 		float installment,closing_balance;
 }row_3[1000];
 
+bool wrong_input_three(float PMT, float PV, float r, float n)
+{
+    if(PMT <=0.0)
+    {
+        cout<<"PMT Wrong Value!!!"<<endl<<endl;
+        return false;
+    }
+    else if(PV <= 0.0)
+    {
+        cout<<"PV Wrong Value !!!"<<endl;
+        return false;
+    }
+
+    else if(r<=0.0)
+    {
+        cout<<"r Wrong value !!!"<<endl;
+        return false;
+    }
+    else if(n<=0.0)
+    {
+        cout<<"n Wrong value !!!"<<endl;
+        return false;
+    }
+
+    else {
+         cout<<"returning true "<<endl;
+        return true;
+    }
+}
+
           //   PMT/PV = r.(1 + 1/(1+r)^n -1)
  void complete_four_PMT(float &PMT, float &PV, float &r, int &n)
  {     
@@ -133,7 +163,10 @@ int  get_input(float &PMT, float &PV, float &r, int &n)
             return 0;
         }
     }
-      cout<<"Your Entered Variables are..."<<endl<<endl;
+          
+          
+
+    cout<<"Your Entered Variables are..."<<endl<<endl;
     complete_four_r(PMT, PV, r, n);
     complete_four_PMT(PMT, PV, r, n);
     complete_four_PV(PMT, PV, r, n);
@@ -142,6 +175,12 @@ int  get_input(float &PMT, float &PV, float &r, int &n)
         <<"PV : "<<PV<<endl
         <<"R : "<<r<<endl
         <<"Number of installments : "<<n<<endl<<endl;
+        if(wrong_input_three(PMT, PV, r, n)==false)
+          {
+                cout<<"seems wrong set of input values....plizz check that "<<endl<<endl;
+                return 0;
+          }
+          return 1;
 
  }
 
@@ -156,7 +195,8 @@ void solve_3()
     
    int res =  get_input(PMT, PV, r, n);
    if(res == 0)
-   {
+   {  
+       cout<<"Aborting!!!!"<<endl<<endl;
        exit(0);
    }
    
