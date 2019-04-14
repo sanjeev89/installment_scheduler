@@ -17,6 +17,7 @@ class data {
 	<<"total interest rate(%)"<<setw(18)<<"interest($)"<<setw(18)
 	<<"installment($)"<<setw(23)<<"closing balance($)"<<endl;
  }
+ 
  char line()
  {
  	for(int i=0;i<30;i++)
