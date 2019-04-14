@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void header()
+void header1()
  {
  	cout<<setw(4)<<" S.NO"<<setw(20)<<"open balance($)"<<setw(18)<<"principal($)"<<setw(23)
 	<<"interest rate(%)"<<setw(18)<<"interest($)"<<setw(18)

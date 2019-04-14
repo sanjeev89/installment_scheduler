@@ -2,14 +2,20 @@
 #include<stdio.h> 
 #include<stdlib.h> 
 #include<time.h>
+
+//file headers
 #include "header_1.h"
+#include "header_2.h"
 #include "front.h"
+
+//file programs for each type
 #include "one.h"
 #include "two.h"
+#include "three.h"
 
 void clear()
 {
-    system("CLS");
+    //system("CLS");
     cout<<endl<<endl<<endl;
     line();
     cout<<" WELCOME TO THE LOAN EMI CALCULATOR ";
@@ -92,7 +98,17 @@ int main()
          }
          else if(choice == 3)
          {
-
+              solve_3();
+              if(do_more())
+              {
+                  clear();
+              }
+              else
+              {
+                  cout<<"Exited Successfully!!!"<<endl;
+                  break;
+              }
+              
          }
          else if(choice == 0)
          {

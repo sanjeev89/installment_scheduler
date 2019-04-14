@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-#include "header_1.h"
+#include "header_2.h"
 #ifndef two
 #define two
 
@@ -26,12 +26,41 @@ double normalRandom()
   return abs(cos(8.*atan(1.)*u2)*sqrt(-2.*log(u1))); 
 }
 
+bool wrong_input_2(float fixed_principal, float  margin_int_rate, float  opening_balance)
+{
+    if(opening_balance <=0)
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+
+    else if(fixed_principal<=0 )
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+    else if(margin_int_rate<=0)
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+    else if(fixed_principal > opening_balance)
+    {
+        cout<<"Wrong set of values for fixed pricipal and opening balance ";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 void solve_2()
 {
     cout<<endl<<endl;
 	float fixed_principal=1000.0,fixed_interest_rate=10.0,opening_balance=12000.0;
 	
-    cout<<line()<<"Welcome To Loan EMI calculator";
+    //cout<<line()<<"Welcome To Loan EMI calculator";
 	cout<<line()<<endl<<endl;
     
     float para_int_rate=0, margin_int_rate=0;
@@ -44,6 +73,12 @@ void solve_2()
     //cin>>para_int_rate;
 	cout<<"Enter Loan Amount ($): ";
 	cin>>opening_balance;
+
+    if(wrong_input_2(fixed_principal, margin_int_rate, opening_balance)==false)
+    {
+        cout<<"Wrong Input set....please check your values!!!";
+        return ;
+    }
 	
     fixed_interest_rate=para_int_rate+margin_int_rate;
     float n=opening_balance/fixed_principal;
@@ -77,7 +112,7 @@ void solve_2()
     cout<<endl<<endl;
     cout<<line()<<"Loan Details with monthly EMI ";
 	cout<<line()<<endl<<endl;
-    header();
+    header2();
     for(int i=1;i<=months;i++)
     {   
         cout<<setw(4)<<row_2[i].s_no<<setw(17)

@@ -12,6 +12,36 @@ class data {
 		float installment,closing_balance;
 }row[1000];
 
+bool wrong_input_1(float fixed_principal,float fixed_interest_rate, float opening_balance)
+{
+    if(opening_balance <=0)
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+
+    else if(fixed_principal<=0 )
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+    else if(fixed_interest_rate<=0)
+    {
+        cout<<"Wrong value!!"<<endl;
+        return false;
+    }
+    else if(fixed_principal > opening_balance)
+    {
+        cout<<"Wrong set of values for fixed pricipal and opening balance ";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    
+}
+
 void solve_1()
 {
     cout<<endl<<endl;
@@ -25,7 +55,11 @@ void solve_1()
 	cin>>fixed_interest_rate;
 	cout<<"Enter Loan Amount ($): ";
 	cin>>opening_balance;
-	
+	if(wrong_input_1(fixed_principal, fixed_interest_rate, opening_balance) == false )
+    {
+        cout<<" wrong input set!!!!"<<endl<<endl;
+        return ;
+    }
     float n=opening_balance/fixed_principal;
     //cout<<"n is "<<n<<endl;
     float months = ceil(n);
@@ -49,7 +83,7 @@ void solve_1()
     cout<<endl<<endl;
     //cout<<line()<<"Loan Details with monthly EMI ";
 	//cout<<line()<<endl<<endl;
-    header();
+    header1();
     for(int i=1;i<=months;i++)
     {   
         cout<<setw(4)<<row[i].s_no<<setw(17)
