@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<fstream>
 #include "header_1.h"
 #ifndef one
 #define one
@@ -64,6 +65,28 @@ void solve_1()
     //cout<<"n is "<<n<<endl;
     float months = ceil(n);
     cout<<endl;
+   
+   //=============================
+   //     file handling start
+  //==============================
+   
+    ofstream fout;
+    fout.open("out.csv", ios::app);
+    fout<<"Fixed Principal Amount ($): "<<","<<fixed_principal<<endl;
+    fout<<"Fixed interest Rate :"<<","<<fixed_interest_rate<<" %"<<endl;
+	fout<<" Loan Amount ($): "<<","<<opening_balance<<endl;
+    fout<<"months "<<","<<months<<endl;
+
+        //enter header file handling
+    fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"
+	<<","<<"interest rate(%)"<<","<<"interest($)"
+	<<","<<"installment($)"<<","<<"closing balance($)"<<endl;
+    //header end
+
+   //=============================
+   //     file handling end
+  //==============================
+
     cout<<"you have to pay loan for "<<months<<" months !!!!"<<endl;         //here months and years are correct dont change anything
     float interest_rate_in_months=fixed_interest_rate/(1200);
     int i=1;	
@@ -84,6 +107,7 @@ void solve_1()
     //cout<<line()<<"Loan Details with monthly EMI ";
 	//cout<<line()<<endl<<endl;
     header1();
+
     for(int i=1;i<=months;i++)
     {   
         cout<<setw(4)<<row[i].s_no<<setw(17)
@@ -93,7 +117,19 @@ void solve_1()
 		<<row[i].interest<<setw(18)
 		<<row[i].installment<<setw(23)
         <<row[i].closing_balance<<endl;
+
+        //enter rows in file
+        fout<<setw(4)<<row[i].s_no<<setw(17)<<","
+		<<row[i].open_balance<<setw(18)<<","
+        <<row[i].principal<<setw(23)<<","
+		<<row[i].interest_rate<<setw(18)<<","
+		<<row[i].interest<<setw(18)<<","
+		<<row[i].installment<<setw(23)<<","
+        <<row[i].closing_balance<<endl;
+
+        //end
     }
+    fout.close();
 }
 
 #endif

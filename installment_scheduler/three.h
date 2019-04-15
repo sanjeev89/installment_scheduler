@@ -39,7 +39,7 @@ bool wrong_input_three(float PMT, float PV, float r, float n)
     }
 
     else {
-         cout<<"returning true "<<endl;
+        // cout<<"returning true "<<endl;
         return true;
     }
 }
@@ -201,6 +201,30 @@ void solve_3()
        cout<<"Aborting!!!!"<<endl<<endl;
        exit(0);
    }
+
+   //====================================
+   //         File handling start
+   //====================================
+
+    ofstream fout;
+    fout.open("out.csv", ios::app); 
+    fout<<endl<<endl;    
+    fout<<"PMT : "<<","<<PMT<<endl
+    <<"PV : "<<","<<PV<<endl
+    <<"R : "<<","<<r<<endl
+    <<"Number of installments : "<<","<<n<<endl<<endl;
+
+    //enter header file handling
+    fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"
+	<<","<<"interest rate(%)"<<","<<"interest($)"
+	<<","<<"installment($)"<<","<<"closing balance($)"<<endl;
+    //header end
+
+
+
+    //====================================
+   //         File handling end
+   //====================================
    
    int i=0;
    cout<<endl;
@@ -235,7 +259,17 @@ void solve_3()
 		<<row_3[i].interest<<setw(18)
 		<<row_3[i].installment<<setw(23)
         <<row_3[i].closing_balance<<endl;
+
+        fout<<row_3[i].s_no<<","
+		<<row_3[i].open_balance<<","
+        <<row_3[i].principal<<","
+		<<row_3[i].interest_rate<<","
+		<<row_3[i].interest<<","
+		<<row_3[i].installment<<","
+        <<row_3[i].closing_balance<<endl;
     }
+
+    fout.close();
 
 }
 

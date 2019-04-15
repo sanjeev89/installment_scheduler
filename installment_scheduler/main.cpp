@@ -7,6 +7,7 @@
 #include "header_1.h"
 #include "header_2.h"
 #include "front.h"
+#include "csv_handler.h"
 
 //file programs for each type
 #include "one.h"
@@ -15,7 +16,7 @@
 
 void clear()
 {
-    //system("CLS");
+    system("CLS");
     cout<<endl<<endl<<endl;
     line();
     cout<<" WELCOME TO THE LOAN EMI CALCULATOR ";
@@ -51,6 +52,10 @@ using namespace std;
 
 int main() 
 {   
+    fstream fout;
+    fout.open("out.csv", ios::out);
+    fout.clear();
+    //fout<<"Welcome to monthly EMI calculator "<<endl;
      cout<<endl<<endl<<endl;
      line();
      cout<<" WELCOME TO THE LOAN EMI CALCULATOR ";
@@ -123,5 +128,6 @@ int main()
          
          
      }
+     fout.close();
 
 }

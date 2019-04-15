@@ -63,7 +63,7 @@ void solve_2()
 	float fixed_principal=1000.0,fixed_interest_rate=10.0,opening_balance=12000.0;
 	
     //cout<<line()<<"Welcome To Loan EMI calculator";
-	cout<<line()<<endl<<endl;
+	//cout<<line()<<endl<<endl;
     
     float para_int_rate=0, margin_int_rate=0;
 	cout<<"Enter Fixed Principal Amount ($):";
@@ -81,6 +81,24 @@ void solve_2()
         cout<<"Wrong Input set....please check your values!!!"<<endl<<endl;
         return ;
     }
+
+    //=================================
+    //   File handling start
+    //=================================
+           ofstream fout;
+           fout.open("out.csv", ios::app);
+           fout<<endl<<endl;
+           fout<<"Fixed Principal Amt($) "<<","<<fixed_principal<<endl;
+           fout<<"Margin Interest Rate "<<","<<margin_int_rate<<"%"<<endl;
+           fout<<"Loan Amount($) "<<","<<opening_balance<<endl<<endl;
+
+          fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"<<","
+              <<"marginal interest rate"<<","<<"Benchmark interest rate "<<","
+	          <<"total interest rate(%)"<<","<<"interest($)"<<","
+	          <<"installment($)"<<","<<"closing balance($)"<<endl;   
+    //=================================
+    //   File handling end
+    //=================================
 	
     fixed_interest_rate=para_int_rate+margin_int_rate;
     float n=opening_balance/fixed_principal;
@@ -125,6 +143,16 @@ void solve_2()
         <<row_2[i].interest_rate<<setw(18)
 		<<row_2[i].interest<<setw(18)
 		<<row_2[i].installment<<setw(23)
+        <<row_2[i].closing_balance<<endl;
+
+        fout<<row_2[i].s_no<<","
+		<<row_2[i].open_balance<<","
+        <<row_2[i].principal<<","
+		<<row_2[i].marg_int<<","
+        <<row_2[i].bench_int<<","
+        <<row_2[i].interest_rate<<","
+		<<row_2[i].interest<<","
+		<<row_2[i].installment<<","
         <<row_2[i].closing_balance<<endl;
     }
 
