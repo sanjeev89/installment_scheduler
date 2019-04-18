@@ -9,7 +9,7 @@ using namespace std;
 
 class data_2 {
 	public:
-		int s_no;
+		string date;
 		float open_balance,principal,interest_rate,interest;
 		float installment,closing_balance;
         float marg_int,bench_int;
@@ -92,13 +92,29 @@ void solve_2()
            fout<<"Margin Interest Rate "<<","<<margin_int_rate<<"%"<<endl;
            fout<<"Loan Amount($) "<<","<<opening_balance<<endl<<endl;
 
-          fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"<<","
+          fout<<"          next due"<<","<<"open balance($)"<<","<<"principal($)"<<","
               <<"marginal interest rate"<<","<<"Benchmark interest rate "<<","
 	          <<"total interest rate(%)"<<","<<"interest($)"<<","
 	          <<"installment($)"<<","<<"closing balance($)"<<endl;   
     //=================================
     //   File handling end
     //=================================
+
+
+
+   //===============================
+   //        timing control starts
+   //==============================
+
+   	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+    int month = timePtr->tm_mon+1;
+    int year = timePtr->tm_year+1900;
+    //cout<<"month "<<timePtr->tm_mon<<" year "<<timePtr->tm_year<<endl;
+
+   //===============================
+   //        timing control ends
+   //===============================
 	
     fixed_interest_rate=para_int_rate+margin_int_rate;
     float n=opening_balance/fixed_principal;
@@ -117,7 +133,7 @@ void solve_2()
       row_2[i].interest_rate = row_2[i].marg_int + row_2[i].bench_int;
       float x= row_2[i].interest_rate/12.0;
       //cout<<x<<endl;
-      row_2[i].s_no = i;
+      row_2[i].date = to_string(month)+"-"+to_string(year);
       row_2[i].open_balance = fixed_principal*(months);
       row_2[i].principal = fixed_principal;
       //row_2[i].interest_rate = fixed_interest_rate;
@@ -126,6 +142,12 @@ void solve_2()
       row_2[i].closing_balance = row_2[i].open_balance-row_2[i].principal;
       
       i++; months--;
+      month++;
+      if(month>12)
+      {
+          month = 1;
+          year = year+1;
+      }
       //cout<<"i = "<<i<<endl;
     }
     months=ceil(n);
@@ -135,7 +157,7 @@ void solve_2()
     header2();
     for(int i=1;i<=months;i++)
     {   
-        cout<<setw(4)<<row_2[i].s_no<<setw(17)
+        cout<<setw(20)<<row_2[i].date<<setw(17)
 		<<row_2[i].open_balance<<setw(18)
         <<row_2[i].principal<<setw(23)
 		<<row_2[i].marg_int<<setw(40)
@@ -145,7 +167,7 @@ void solve_2()
 		<<row_2[i].installment<<setw(23)
         <<row_2[i].closing_balance<<endl;
 
-        fout<<row_2[i].s_no<<","
+        fout<<row_2[i].date<<","
 		<<row_2[i].open_balance<<","
         <<row_2[i].principal<<","
 		<<row_2[i].marg_int<<","

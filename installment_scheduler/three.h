@@ -7,7 +7,7 @@ using namespace std;
 
 class data_3 {
 	public:
-		int s_no;
+		string date;
 		float open_balance,principal,interest_rate,interest;
 		float installment,closing_balance;
 }row_3[1000];
@@ -215,7 +215,7 @@ void solve_3()
     <<"Number of installments : "<<","<<n<<endl<<endl;
 
     //enter header file handling
-    fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"
+    fout<<"            next due"<<","<<"open balance($)"<<","<<"principal($)"
 	<<","<<"interest rate(%)"<<","<<"interest($)"
 	<<","<<"installment($)"<<","<<"closing balance($)"<<endl;
     //header end
@@ -224,7 +224,21 @@ void solve_3()
 
     //====================================
    //         File handling end
-   //====================================
+   //=====================================
+
+  //===============================
+  //        timing control starts
+  //===============================
+
+   	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+    int month = timePtr->tm_mon+1;
+    int year = timePtr->tm_year+1900;
+    cout<<"month "<<timePtr->tm_mon<<" year "<<timePtr->tm_year<<endl;
+
+  //===============================
+  //        timing control ends
+  //===============================
    
    int i=0;
    cout<<endl;
@@ -232,7 +246,7 @@ void solve_3()
     cout<<"you have to pay loan for "<<n<<" months !!!!"<<endl;         //here months and years are correct dont change anything
    while(ceil(n) >= 0)
    {
-      row_3[i].s_no = i;
+      row_3[i].date = to_string(month)+"-"+to_string(year);
       row_3[i].open_balance = i==1 ? PV : row_3[i-1].open_balance - row_3[i-1].principal;
       row_3[i].principal = PMT - row_3[i].open_balance*r/(100.0);
       row_3[i].interest_rate = r;
@@ -240,6 +254,12 @@ void solve_3()
       row_3[i].installment = PMT;
       row_3[i].closing_balance = row_3[i].open_balance-row_3[i].principal;
       i++; n--;
+      month++;
+      if(month>12)
+      {
+          month = 1;
+          year = year+1;
+      }
    }
 
     cout<<endl<<endl;
@@ -252,7 +272,7 @@ void solve_3()
         {
         	row_3[i].closing_balance=0;
 		}
-        cout<<setw(4)<<row_3[i].s_no<<setw(17)
+        cout<<setw(20)<<row_3[i].date<<setw(17)
 		<<row_3[i].open_balance<<setw(18)
         <<row_3[i].principal<<setw(23)
 		<<row_3[i].interest_rate<<setw(18)
@@ -260,7 +280,7 @@ void solve_3()
 		<<row_3[i].installment<<setw(23)
         <<row_3[i].closing_balance<<endl;
 
-        fout<<row_3[i].s_no<<","
+        fout<<row_3[i].date<<","
 		<<row_3[i].open_balance<<","
         <<row_3[i].principal<<","
 		<<row_3[i].interest_rate<<","

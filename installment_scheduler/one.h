@@ -8,7 +8,7 @@ using namespace std;
 
 class data {
 	public:
-		int s_no;
+		string date;
 		float open_balance,principal,interest_rate,interest;
 		float installment,closing_balance;
 }row[1000];
@@ -78,7 +78,7 @@ void solve_1()
     fout<<"months "<<","<<months<<endl;
 
         //enter header file handling
-    fout<<" S.NO"<<","<<"open balance($)"<<","<<"principal($)"
+    fout<<"           next due"<<","<<"open balance($)"<<","<<"principal($)"
 	<<","<<"interest rate(%)"<<","<<"interest($)"
 	<<","<<"installment($)"<<","<<"closing balance($)"<<endl;
     //header end
@@ -87,12 +87,28 @@ void solve_1()
    //     file handling end
   //==============================
 
+
+
+  //===============================
+  //        timing control starts
+  //==============================
+
+   	time_t t = time(NULL);
+	tm* timePtr = localtime(&t);
+    int month = timePtr->tm_mon+1;
+    int year = timePtr->tm_year+1900;
+    cout<<"month "<<timePtr->tm_mon<<" year "<<timePtr->tm_year<<endl;
+
+  //===============================
+  //        timing control ends
+  //===============================
+
     cout<<"you have to pay loan for "<<months<<" months !!!!"<<endl;         //here months and years are correct dont change anything
     float interest_rate_in_months=fixed_interest_rate/(1200);
     int i=1;	
     while(months>=0)
     {
-      row[i].s_no = i;
+      row[i].date = to_string(month)+"-"+to_string(year);
       row[i].open_balance = fixed_principal*(months);
       row[i].principal = fixed_principal;
       row[i].interest_rate = fixed_interest_rate;
@@ -100,6 +116,12 @@ void solve_1()
       row[i].installment = row[i].interest+fixed_principal;
       row[i].closing_balance = row[i].open_balance-row[i].principal;
       i++; months--;
+      month++;
+      if(month>12)
+      {
+          month = 1;
+          year = year+1;
+      }
       //cout<<"i = "<<i<<endl;
     }
     months=ceil(n);
@@ -110,7 +132,7 @@ void solve_1()
 
     for(int i=1;i<=months;i++)
     {   
-        cout<<setw(4)<<row[i].s_no<<setw(17)
+        cout<<setw(20)<<row[i].date<<setw(17)
 		<<row[i].open_balance<<setw(18)
         <<row[i].principal<<setw(23)
 		<<row[i].interest_rate<<setw(18)
@@ -119,7 +141,7 @@ void solve_1()
         <<row[i].closing_balance<<endl;
 
         //enter rows in file
-        fout<<setw(4)<<row[i].s_no<<setw(17)<<","
+        fout<<setw(4)<<row[i].date<<setw(17)<<","
 		<<row[i].open_balance<<setw(18)<<","
         <<row[i].principal<<setw(23)<<","
 		<<row[i].interest_rate<<setw(18)<<","

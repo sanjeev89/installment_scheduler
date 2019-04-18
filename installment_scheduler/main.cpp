@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #include<stdio.h> 
 #include<stdlib.h> 
-#include<time.h>
+#include<ctime>
 
 //file headers
 #include "header_1.h"
